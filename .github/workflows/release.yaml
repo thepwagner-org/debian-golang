@@ -26,7 +26,7 @@ jobs:
       - name: "🔏 Signing"
         run: |
          for DEB in output/*.deb; do
-            cosign sign-blob "$DEB" --yes "--output-certificate=output/${DEB}.pem" "--output-signature=output/${DEB}.sig"
+            cosign sign-blob "$DEB" --yes "--output-certificate=${DEB}.pem" "--output-signature=${DEB}.sig"
          done
       - name: "📦 Upload to release"
         uses: softprops/action-gh-release@de2c0eb89ae2a093876385947365aca7b0e5f844 # v0.1.15
