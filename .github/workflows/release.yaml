@@ -11,17 +11,24 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      id-token: write
     steps:
-      - uses: actions/checkout@v4
-      - name: Setup nfpm
+      - name: "🌎 Fetching code"
+        uses:  actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+        with:
+         persist-credentials: false
+      - name: "🌎 Setup nfpm"
         run: script/setup-nfpm
-      - uses: sigstore/cosign-installer@v3.3.0
-      - run: make -j2
-      - run: |
+      - name: "🌎 Setup Cosign"
+        uses: sigstore/cosign-installer@9614fae9e5c5eddabb09f90a270fcb487c9f7149 # v3.3.0
+      - name: "🚧 Building"
+        run: make -j$(nproc)
+      - name: "🔏 Signing"
+        run: |
          for DEB in output/*.deb; do
             cosign sign-blob "$DEB" --yes
          done
-      - name: Upload to release
-        uses: softprops/action-gh-release@v1
+      - name: "📦 Upload to release"
+        uses: softprops/action-gh-release@de2c0eb89ae2a093876385947365aca7b0e5f844 # v0.1.15
         with:
           files: output/*.deb
