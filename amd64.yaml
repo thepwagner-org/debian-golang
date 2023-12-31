@@ -1,0 +1,11 @@
+name: golang
+arch: amd64
+version: 1.21.5
+maintainer: Pwagner <debian-golang@pwagner.net>
+
+contents:
+  - src: tmp/amd64/go
+    dst: /usr/local/go
+  - src: /usr/local/go/bin/go
+    dst: /usr/local/bin/go
+    type: symlink
