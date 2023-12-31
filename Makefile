@@ -25,7 +25,8 @@ tmp/$(ARCH)/go: tmp/$(ARCH).tar.gz
 
 tmp/$(ARCH).tar.gz: tmp
 	curl -sLo tmp/$(ARCH).tar.gz "https://go.dev/dl/go$(VERSION).linux-$(ARCH).tar.gz"
-	sha256sum -c SHA256SUM --ignore-missing
+	grep tmp/$(ARCH).tar.gz SHA256SUM > tmp/$(ARCH).tar.gz.sha256sum
+	sha256sum -c tmp/$(ARCH).tar.gz.sha256sum
 
 output:
 	mkdir -p output
