@@ -1,6 +1,4 @@
-# Source: https://go.dev/dl/#stable
-# Be sure to update SHA256SUM as well.
-VERSION := 1.21.5
+VERSION := $(shell grep "FROM golang:" Dockerfile | cut -d: -f2 | cut -d@ -f1)
 
 ARCH ?= amd64
 ARCHITECTURES := amd64 arm64
