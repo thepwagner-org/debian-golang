@@ -1,3 +1,5 @@
+# Source: https://go.dev/dl/#stable
+# Be sure to update SHA256SUM as well.
 VERSION := 1.21.5
 
 ARCH ?= amd64
