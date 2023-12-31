@@ -1,10 +1,10 @@
 name: golang
-arch: arm64
-version: 1.21.5
+arch: ARCH
+version: VERSION
 maintainer: Pwagner <debian-golang@pwagner.net>
 
 contents:
-  - src: tmp/arm64/go
+  - src: tmp/ARCH/go
     dst: /usr/local/go
   - src: /usr/local/go/bin/go
     dst: /usr/local/bin/go

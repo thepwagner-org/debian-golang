@@ -13,8 +13,11 @@ $(ARCHITECTURES):
 .PHONY: build
 build: output/golang_$(VERSION)_$(ARCH).deb
 
-output/golang_$(VERSION)_$(ARCH).deb: tmp/$(ARCH)/go output
-	nfpm package -p deb -f $(ARCH).yaml -t output/
+output/golang_$(VERSION)_$(ARCH).deb: tmp/$(ARCH)/go tmp/$(ARCH).yaml output
+	nfpm package -p deb -f tmp/$(ARCH).yaml -t output/
+
+tmp/$(ARCH).yaml: tmp
+	sed -e "s/VERSION/$(VERSION)/g" -e "s/ARCH/$(ARCH)/g" nfpm.yaml > tmp/$(ARCH).yaml
 
 tmp/$(ARCH)/go: tmp/$(ARCH).tar.gz
 	mkdir -p tmp/$(ARCH)
