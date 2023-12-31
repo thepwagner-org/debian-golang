@@ -1,0 +1,11 @@
+name: golang
+arch: ARCH
+version: VERSION
+maintainer: Pwagner <debian-golang@pwagner.net>
+
+contents:
+  - src: tmp/ARCH/go
+    dst: /usr/local/go
+  - src: /usr/local/go/bin/go
+    dst: /usr/local/bin/go
+    type: symlink

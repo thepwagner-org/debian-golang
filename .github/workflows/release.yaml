@@ -1,0 +1,27 @@
+name: Release
+
+on:
+  push:
+    tags: [ 'v*.*.*' ]
+
+permissions: {}
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup nfpm
+        run: script/setup-nfpm
+      - uses: sigstore/cosign-installer@v3.3.0
+      - run: make -j2
+      # - run: |
+      #    for DEB in output/*.deb; do
+      #       cosign sign-blob "$DEB"
+      #    done
+      - name: Upload to release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: output/*.deb

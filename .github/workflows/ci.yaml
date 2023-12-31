@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  push:
+    branches: [ '**' ]
+    tags-ignore: [ 'v*.*.*' ]
+
+permissions: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup nfpm
+        run: script/setup-nfpm
+      - run: make -j2
