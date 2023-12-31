@@ -17,10 +17,10 @@ jobs:
         run: script/setup-nfpm
       - uses: sigstore/cosign-installer@v3.3.0
       - run: make -j2
-      # - run: |
-      #    for DEB in output/*.deb; do
-      #       cosign sign-blob "$DEB"
-      #    done
+      - run: |
+         for DEB in output/*.deb; do
+            cosign sign-blob "$DEB" --yes
+         done
       - name: Upload to release
         uses: softprops/action-gh-release@v1
         with:
