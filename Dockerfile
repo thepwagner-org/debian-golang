@@ -6,5 +6,5 @@
 FROM golang:1.21.6@sha256:76aadd914a29a2ee7a6b0f3389bb2fdb87727291d688e1d972abe6c0fa6f2ee0
 
 # renovate: datasource=github-release-attachments depName=goreleaser/nfpm versioning=semver
-ARG NFPM_VERSION=v2.35.2
-ARG NFPM_CHECKSUM=b82f085fedc5e2df1ff4274aee3b29285f4a48a2c4001e255def58a1f9ff117dd51214be4d40170cb91d5db48a648182a34e8fa924aaa987f3a31eae46b50d8c
+ARG NFPM_VERSION=v2.35.3
+ARG NFPM_CHECKSUM=ce3ceebb3337e97a72c96d6b46ec770fb3a36f0abeeab2ad1528d57e5675fe802cb40457adc517396083f77f43ae30da2f4004fc9f6373b15aee519ee5af551f
