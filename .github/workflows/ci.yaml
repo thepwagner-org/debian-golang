@@ -12,8 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      id-token: write
-      attestations: write
     steps:
       - name: "🌎 Fetching code"
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
@@ -23,7 +21,3 @@ jobs:
         run: script/setup-nfpm
       - name: "🚧 Building"
         run: make -j$(nproc)
-      - name: "🔏 Signing (GitHub)"
-        uses: actions/attest-build-provenance@897ed5eab6ed058a474202017ada7f40bfa52940 # v1.0.0
-        with:
-          subject-path: "output/*.deb"
