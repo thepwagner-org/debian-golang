@@ -2,8 +2,8 @@ name: CI
 
 on:
   push:
-    branches: [ '**' ]
-    tags-ignore: [ 'v*.*.*' ]
+    branches: ["**"]
+    tags-ignore: ["v*.*.*"]
 
 permissions: {}
 
@@ -14,9 +14,9 @@ jobs:
       contents: read
     steps:
       - name: "🌎 Fetching code"
-        uses:  actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
-         persist-credentials: false
+          persist-credentials: false
       - name: "🌎 Setup nfpm"
         run: script/setup-nfpm
       - name: "🚧 Building"
