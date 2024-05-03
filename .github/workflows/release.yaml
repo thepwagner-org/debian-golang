@@ -2,7 +2,7 @@ name: Release
 
 on:
   push:
-    tags: [ 'v*.*.*' ]
+    tags: ["v*.*.*"]
 
 permissions: {}
 
@@ -12,22 +12,27 @@ jobs:
     permissions:
       contents: write
       id-token: write
+      attestations: write
     steps:
       - name: "🌎 Fetching code"
-        uses:  actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
-         persist-credentials: false
+          persist-credentials: false
       - name: "🌎 Setup nfpm"
         run: script/setup-nfpm
       - name: "🌎 Setup Cosign"
         uses: sigstore/cosign-installer@e1523de7571e31dbe865fd2e80c5c7c23ae71eb4 # v3.4.0
       - name: "🚧 Building"
         run: make -j$(nproc)
-      - name: "🔏 Signing"
+      - name: "🔏 Signing (cosign)"
         run: |
-         for DEB in output/*.deb; do
-            cosign sign-blob "$DEB" --yes "--output-certificate=${DEB}.pem" "--output-signature=${DEB}.sig"
-         done
+          for DEB in output/*.deb; do
+             cosign sign-blob "$DEB" --yes "--output-certificate=${DEB}.pem" "--output-signature=${DEB}.sig"
+          done
+      - name: "🔏 Signing (GitHub)"
+        uses: actions/attest-build-provenance@897ed5eab6ed058a474202017ada7f40bfa52940 # v1.0.0
+        with:
+          subject-path: "output/*.deb"
       - name: "📦 Upload to release"
         uses: softprops/action-gh-release@9d7c94cfd0a1f3ed45544c887983e9fa900f0564 # v2.0.4
         with:
