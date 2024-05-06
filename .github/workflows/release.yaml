@@ -30,7 +30,7 @@ jobs:
              cosign sign-blob "$DEB" --yes "--output-certificate=${DEB}.pem" "--output-signature=${DEB}.sig"
           done
       - name: "🔏 Signing (GitHub)"
-        uses: actions/attest-build-provenance@897ed5eab6ed058a474202017ada7f40bfa52940 # v1.0.0
+        uses: actions/attest-build-provenance@f8d5ea8082b0d9f5ab855907be308fbd7eefb155 # v1.1.0
         with:
           subject-path: "output/*.deb"
       - name: "📦 Upload to release"
