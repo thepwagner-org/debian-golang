@@ -3,7 +3,7 @@
 # If changing, update SHA256SUM from https://go.dev/dl/#stable
 # This can be manually updated when golang releases, or when DockerHub releases this image will lazily Renovate.
 # The digest is not used.
-FROM golang:1.22.6@sha256:2bd56f00ff47baf33e64eae7996b65846c7cb5e0a46e0a882ef179fd89654afa
+FROM golang:1.22.6@sha256:305aae5c6d68e9c122246147f2fde17700d477c9062b6724c4d182abf6d3907e
 
 # renovate: datasource=github-release-attachments depName=goreleaser/nfpm versioning=semver
 ARG NFPM_VERSION=v2.38.0
