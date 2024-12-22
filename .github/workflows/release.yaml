@@ -20,15 +20,10 @@ jobs:
           persist-credentials: false
       - name: "🌎 Setup nfpm"
         run: script/setup-nfpm
-      - name: "🌎 Setup Cosign"
-        uses: sigstore/cosign-installer@dc72c7d5c4d10cd6bcb8cf6e3fd625a9e5e537da # v3.7.0
+
       - name: "🚧 Building"
         run: make -j$(nproc)
-      - name: "🔏 Signing (cosign)"
-        run: |
-          for DEB in output/*.deb; do
-             cosign sign-blob "$DEB" --yes "--output-certificate=${DEB}.pem" "--output-signature=${DEB}.sig"
-          done
+
       - name: "🔏 Signing (GitHub)"
         uses: actions/attest-build-provenance@7668571508540a607bdfd90a87a560489fe372eb # v2.1.0
         with:
