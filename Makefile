@@ -21,7 +21,7 @@ tmp/$(ARCH).yaml: tmp
 
 tmp/$(ARCH)/go: tmp/$(ARCH).tar.gz
 	mkdir -p tmp/$(ARCH)
-	tar -C tmp/$(ARCH) -xzf tmp/$(ARCH).tar.gz --exclude="src" --exclude="test"
+	tar -C tmp/$(ARCH) -xzf tmp/$(ARCH).tar.gz --exclude="test"
 
 tmp/$(ARCH).tar.gz: tmp
 	curl -sLo tmp/$(ARCH).tar.gz "https://go.dev/dl/go$(VERSION).linux-$(ARCH).tar.gz"
