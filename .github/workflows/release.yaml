@@ -25,7 +25,7 @@ jobs:
         run: make -j$(nproc)
 
       - name: "🔏 Signing (GitHub)"
-        uses: actions/attest-build-provenance@7668571508540a607bdfd90a87a560489fe372eb # v2.1.0
+        uses: actions/attest-build-provenance@520d128f165991a6c774bcb264f323e3d70747f4 # v2.2.0
         with:
           subject-path: "output/*.deb"
       - name: "📦 Upload to release"
